@@ -41,8 +41,8 @@ def new_User(username:str, password:Union[None, str], attached_service:Union[Non
 
 ## Blob service items ##
 
-def new_Blob(blob_id:str, attached_service:BlobService) -> Blob:
-    '''Given a blob identifier and a BlobService instance, get intance of a Blob()'''
+def new_Blob(blob_id:str, attached_service:BlobService, user:str) -> Blob:
+    '''Given a blob identifier, a BlobService instance and the user, get intance of a Blob()'''
     raise NotImplementedError()
 
 

@@ -29,8 +29,8 @@ class Directory:
         '''Obtiene una lista de ficheros del directorio'''
         raise NotImplementedError()
 
-    def new_file(self, filename, blob_id):
-        '''Crea un nuevo fichero a partir de un blob'''
+    def new_file(self, filename, file_url):
+        '''Crea un nuevo fichero a partir de la URL de un blob'''
         raise NotImplementedError()
 
     def remove_file(self, filename):

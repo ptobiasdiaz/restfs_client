@@ -7,12 +7,15 @@
 import os.path
 
 
+from restfs_client import get_AuthService, get_BlobService, get_DirectoryService
+
+
 class RestFS:
     '''Filesystem implementation os RestFS'''
-    def __init__(self, auth, blob, dirs, user):
-        self._auth_ = auth
-        self._blob_ = blob
-        self._dirs_ = dirs
+    def __init__(self, auth: str, blob: str, dirs: str, user):
+        self._auth_ = get_AuthService(auth)
+        self._blob_ = get_BlobService(blob)
+        self._dirs_ = get_DirectoryService(dirs)
 
         self._user_ = user
 

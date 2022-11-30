@@ -438,12 +438,16 @@ class RestFSShell(cmd.Cmd):
 
         line = line.split()
         try:
-            pre_input = line[0]
+            source_filename = line[0]
         except IndexError:
-            pre_input = None
-        source_filename = ask_string('Destination filename: ', pre_input, interactive=self.interactive)
+            source_filename = None
+        try:
+            target_blob = line[1]
+        except IndexError:
+            target_blob = None
+        source_filename = ask_string('Source filename: ', source_filename, interactive=self.interactive)
         source_filename = os.path.abspath(os.path.join(self.lpath, source_filename))
-        target_blob = ask_choice(self.blob_selection, line, self.interactive, self.out)
+        target_blob = ask_choice(self.blob_selection, target_blob, self.interactive, self.out)
         try:
             target_blob.refresh_from(source_filename)
             self.out(f'Blob updated using {os.path.basename(source_filename)}')

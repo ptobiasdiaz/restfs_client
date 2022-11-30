@@ -879,7 +879,7 @@ def main():
 
     if auth_service and blob_service and dirs_service and user:
         logging.debug('Automount root folder...')
-        mount = RestFS(auth_service, blob_service, dirs_service, user)
+        mount = RestFS(auth_service.base_url, blob_service.base_url, dirs_service.base_url, user)
     else:
         mount = None
 

@@ -241,7 +241,7 @@ class RestFSShell(cmd.Cmd):
         if self.user is None:
             self.error_out('Already logged out')
             return
-        if self.current_dir is not None:
+        if self.mount is not None:
             self.error_out('User mounts a directory, unmount first')
             return
         self.user = None

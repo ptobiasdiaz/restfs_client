@@ -504,7 +504,7 @@ class RestFSShell(cmd.Cmd):
 
     def do_mount_rfs(self, line):
         '''Get a root directory from the directory service'''
-        if self.current_dir is not None:
+        if self.mount is not None:
             self.error_out('Already mounted, unmount first')
             return
         if self.dirs is None:

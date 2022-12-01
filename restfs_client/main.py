@@ -147,11 +147,11 @@ class RestFSShell(cmd.Cmd):
             self.out('No blobs selected')
         else:
             self.out(f'{len(self.blob_selection)} blob(s) selected')
-        if self.current_dir is None:
+        if self.mount is None:
             self.out('No folder mounted')
         else:
-            self.out(f'Folder mounted: {self.current_dir.identifier}')
-            self.out(f'Remote path: {self.rpath}')
+            self.out(f'Folder mounted: {self.mount.current_directory.identifier}')
+            self.out(f'Remote path: {self.mount.current_path}')
 
     ### Local filesystem commands ###
 

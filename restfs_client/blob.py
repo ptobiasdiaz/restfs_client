@@ -82,18 +82,19 @@ class BlobService:
     def remove_blob(self, blob_id, user=None):
         '''Intenta eliminar un blob usando el usuario dado'''
         if isinstance(blob_id, Blob):
-            headers = {header_name(blob_id.owner): blob_id.owner.token}
             request_url = f'/blob/{blob_id.identifier}'
+            if not user:
+                user = blob_id.owner
         elif isinstance(blob_id, str):
             if user is None:
                 raise ValueError('User cannot be None is blob is a string instance')
-            headers = {header_name(user): user.token}
             if validators.url(blob_id):
                 request_url = blob_id
             else:
                 request_url = f'/blob/{blob_id}'
         else:
             raise ValueError(f'Unsupported value type for blob_id ({type(blob_id)})')
+        headers = {header_name(user): user.token}
         result = self.delete(request_url, headers=headers)
         if result.status_code == 404:
             raise Unauthorized(user.user, result.content.decode(DEFAULT_ENCODING))
